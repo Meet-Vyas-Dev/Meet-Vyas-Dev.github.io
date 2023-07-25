@@ -1,40 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+  font-family: "Inter", sans-serif;
+  max-width: 45em;
+  margin: 0 auto;
+  padding-top: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-nav {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+h1 {
+  font-size: 2em;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
+h2 {
+  font-size: 1.375em;
+  font-weight: normal;
+  color: rgb(80, 80, 80);
+  line-height: 0em;
 }
 
-nav li {
-    margin-right: 1rem;
+p {
+  font-size: 1.125em;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem;
+a {
+  font-weight: bold;
+  color: rgb(0, 0, 255);
+  text-decoration: none;
 }
-
-main {
-    padding: 2rem;
-}
-
-footer {
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-}
-
