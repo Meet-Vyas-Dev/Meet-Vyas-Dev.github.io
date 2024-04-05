@@ -7,21 +7,17 @@ body {
   padding-top: 3em;
   padding-left: 1em;
   padding-right: 1em;
-  background-image: url("https://github.com/Meet-Vyas-Dev/Meet-Vyas-Dev.github.io/blob/main/background.jpg"); 
-  background-size: cover; /* Cover the entire background */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Do not repeat the background image */
 }
 
 h1 {
   font-size: 2em;
-  color: #fff; /* White color for better contrast */
+  color: grey; /* White color for better contrast */
 }
 
 h2 {
   font-size: 1.375em;
   font-weight: normal;
-  color: #f0f0f0; /* Off-white color for better contrast */
+  color: grey; /* Off-white color for better contrast */
 }
 
 p {
