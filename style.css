@@ -7,7 +7,7 @@ body {
   padding-top: 3em;
   padding-left: 1em;
   padding-right: 1em;
-  background-image: url('https://github.com/Meet-Vyas-Dev/Meet-Vyas-Dev.github.io/blob/main/background.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your custom image */
+  background-image: url("https://github.com/Meet-Vyas-Dev/Meet-Vyas-Dev.github.io/blob/main/background.jpg"); 
   background-size: cover; /* Cover the entire background */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Do not repeat the background image */
