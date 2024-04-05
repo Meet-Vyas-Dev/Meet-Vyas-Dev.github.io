@@ -7,25 +7,34 @@ body {
   padding-top: 3em;
   padding-left: 1em;
   padding-right: 1em;
+  background-image: url('https://cdn.vox-cdn.com/thumbor/oTNriQec2Y-zWATGO3WfN1ke888=/0x0:600x350/1400x1400/filters:focal(300x175:301x176)/cdn.vox-cdn.com/uploads/chorus_asset/file/16022135/A_Consensus_sm.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your custom image */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
 }
 
 h1 {
   font-size: 2em;
+  color: #fff; /* White color for better contrast */
 }
 
 h2 {
   font-size: 1.375em;
   font-weight: normal;
-  color: rgb(80, 80, 80);
-  line-height: 0em;
+  color: #f0f0f0; /* Off-white color for better contrast */
 }
 
 p {
   font-size: 1.125em;
+  color: #e0e0e0; /* Light gray color for better contrast */
 }
 
 a {
   font-weight: bold;
-  color: rgb(0, 0, 255);
+  color: black; /* Vibrant blue color for links */
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline; /* Add underline on hover for better feedback */
 }
