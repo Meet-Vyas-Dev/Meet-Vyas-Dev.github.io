@@ -904,8 +904,9 @@
     .col-md-4 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 33.33333%;
-      flex: 1 0 100%; /* Ensures it takes full width on small screens */
-      max-width: 100%; /* Keeps the image within bounds */}
+      flex: 0 0 33.33333%;
+      max-width: 33.33333%; }
+      
     .col-md-5 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 41.66667%;
@@ -7293,32 +7294,7 @@
     color: #c0c0c0;
     position: relative;
     } 
-    body:after {
-      position: fixed;
-      top: 150px;
-      right: -150px;
-      bottom: auto; /* Changed to auto to ensure the circle's position is controlled by top and right */
-      content: '';
-      width: 400px;
-      height: 400px; /* Make the height equal to the width to create a circle */
-      border: 2px solid rgba(255, 255, 255, 0.05);
-      z-index: -1;
-      border-radius: 50%; /* This makes the rectangle a circle */
-      transform: rotate(0deg); /* No need for rotation for circles */
-  }
-  body:before {
-      position: fixed;
-      top: 150px;
-      left: -150px;
-      bottom: auto; /* Changed to auto to ensure the circle's position is controlled by top and left */
-      content: '';
-      width: 400px;
-      height: 400px; /* Make the height equal to the width to create a circle */
-      border: 2px solid rgba(255, 255, 255, 0.05);
-      z-index: -1;
-      border-radius: 50%; /* This makes the rectangle a circle */
-      transform: rotate(0deg); /* No need for rotation for circles */
-  }
+
   
     body.menu-show {
       overflow: hidden;
