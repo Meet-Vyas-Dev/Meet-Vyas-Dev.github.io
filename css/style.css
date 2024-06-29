@@ -904,8 +904,8 @@
     .col-md-4 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 33.33333%;
-      flex: 0 0 33.33333%;
-      max-width: 33.33333%; }
+      flex: 1 0 100%; /* Ensures it takes full width on small screens */
+      max-width: 100%; /* Keeps the image within bounds */}
     .col-md-5 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 41.66667%;
