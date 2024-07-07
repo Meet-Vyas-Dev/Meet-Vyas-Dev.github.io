@@ -323,6 +323,33 @@
 		opacity: 0;
 		transform: scale(0.8); /* Slightly smaller for collapsed state */
 	}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .colorlib-navbar-brand {
+        flex: 1;
+    }
+}   
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slider-item {
+            height: 50vh;
+        }
+        .slider-text h1 {
+            font-size: 24px;
+        }
+        .slider-text p a {
+            font-size: 20px;
+        }
+    }
 </style>
 
 
