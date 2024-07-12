@@ -17,7 +17,16 @@ for (var i = 0; i < 30; i++)
 
 window.addEventListener("load", initialize);
 
-var correlation_worker = new Worker("correlation_worker.js");
+var correlation_worker = new Worker("js/correlation_worker.js");
+
+// Set up a message listener to receive messages from the worker
+correlation_worker.onmessage = function(e) {
+    console.log('Message from worker:', e.data);
+};
+
+// Send a test message to the worker
+correlation_worker.postMessage('Test message');
+
 correlation_worker.addEventListener("message", interpret_correlation_result);
 
 function initialize()
