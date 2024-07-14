@@ -39,6 +39,34 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style-about.css">
 
+<style>
+    .scroll-wrapper {
+    max-height: 70vh; /* Adjust this value as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* To prevent content from touching the scrollbar */
+  }
+
+  /* For WebKit browsers (Chrome, Safari) */
+  .scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  /* For Firefox */
+  .scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  }
+
+</style>
     <body>
         <div class="KW_progressContainer">
             <div class="KW_progressBar">
@@ -53,6 +81,7 @@
                         <div class="row no-gutters">
                             <div class="col-md-12 text-center">
                                 <h1 class="mb-4"><a href="index.html" class="logo" style="color: #fff">Meet Vyas</a></h1>
+                                <div class="scroll-wrapper">
                                 <ul>
                                     <li><a target="_blank" href="index.html"><span><small>01</small>Home</span></a></li>
                                     <li><a target="_blank" href="about.html"><span><small>02</small>About</span></a></li>
@@ -63,7 +92,7 @@
                                     <li><a target="_blank" href="https://meet-vyas.notion.site/2096f14202de434995ea109d4381ca71?v=227db1b3a43446a98e2aaa79d7ff9461&pvs=4"><span><small>07</small>Reading List</span></a></li>
                                     <li><a target="_blank" href="references.html"><span><small>08</small>References & Textbooks </span></a></li>     
                                     <li><a target="_blank" href="tuner.html"><span><small>08</small>Tuner (Beta)</span></a></li>     
-                                     
+
                                 </ul>
                             </div>
                         </div>
