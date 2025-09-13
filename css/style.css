@@ -7281,19 +7281,29 @@
     .table-bordered td {
       border: 1px solid #dee2e6 !important; } }
   
-  body {
-    font-family: "Poppins", Arial, sans-serif;
-    background-image: url(../pics/background11.png); /* Path to your background image */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-position: center center; /* Centers the image */
-    background-attachment: fixed; /* Keeps the background fixed during scroll */ 
-    font-size: 15px;
-    line-height: 1.8;
-    font-weight: 400;
-    color: #c0c0c0;
-    position: relative;
-    } 
+      body {
+      font-family: "Poppins", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 400;
+      color: #c0c0c0;
+      position: relative;
+      /* Background properties are removed from here */
+      } 
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background-image: url(../pics/background11.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
 
   
     body.menu-show {
