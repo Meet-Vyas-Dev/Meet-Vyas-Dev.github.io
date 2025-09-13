@@ -7528,7 +7528,6 @@
           /* Revert the menu to a simple centered layout */
           #colorlib-main-nav ul {
           display: block;
-          text-align: center;
           }
 
           /* Remove the fixed width from the numbers */
