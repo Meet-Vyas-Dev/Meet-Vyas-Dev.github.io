@@ -7934,73 +7934,32 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
       display: block;
       height: 300px; } }
   
-/*
-===================================================================
-CORRECTED FIX FOR ABOUT PAGE (TITLE STACKING & RESPONSIVENESS)
-===================================================================
-*/
-
-/* This ensures the z-index fix works on all screen sizes */
-.wrap .about-desc {
-  position: relative;
-}
-
-/* Base style for the background title. We remove z-index from here. */
-.wrap .about-desc .bold-text {
-  position: absolute;
-  font-weight: 700 !important;
-  color: rgba(255, 255, 255, 0.08);
-  text-transform: uppercase;
-  display: block !important;
-}
-
-/* NEW RULE: This lifts the main content (like "More About Me") 
-  and the experience sections above the background titles.
-*/
-.about-desc .p-5,
-.exp {
-  position: relative;
-  z-index: 1;
-}
-
-
 .wrap {
-  overflow-x: hidden;
-}
-
-/* --- MEDIA QUERIES (Unchanged) --- */
-
-/* Mobile Styles (< 768px) */
-@media (max-width: 767.98px) {
+  padding: 0; }
+  @media (max-width: 767.98px) {
+    .wrap {
+      margin-top: 40px; } }
+  @media (min-width: 768px) {
+    .wrap .about-desc {
+      position: relative; } }
   .wrap .about-desc .bold-text {
-    font-size: 4.5em;
-    top: 50px;
-    left: -10px;
-  }
-  .section-title {
-    white-space: normal;
-    overflow-wrap: break-word;
-    line-height: 1.4;
-  }
-}
-
-/* Tablet Styles (768px - 992px) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .wrap .about-desc .bold-text {
-    font-size: 7em;
-    top: -40px;
-    left: -20px;
-  }
-}
-
-/* Desktop Styles (> 992px) */
-@media (min-width: 992px) {
-  .wrap .about-desc .bold-text {
-    font-size: 10em;
+    position: absolute;
     top: -80px;
     left: -50px;
-  }
-}
+    right: 0;
+    bottom: 0;
+    font-weight: 700 !important;
+    color: rgba(255, 255, 255, 0.08);
+    text-transform: uppercase; }
+    @media (min-width: 992px) {
+      .wrap .about-desc .bold-text {
+        font-size: 10em; } }
+    @media (max-width: 991.98px) {
+      .wrap .about-desc .bold-text {
+        display: none; } }
+    @media (max-width: 767.98px) {
+      .wrap .about-desc .bold-text {
+        display: none; } }
   
   .profile {
     margin-bottom: 5em; }
