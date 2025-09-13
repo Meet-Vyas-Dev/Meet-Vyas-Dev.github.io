@@ -276,6 +276,7 @@ button:hover {
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 auto;
         }
 
         #activate-tuner {
@@ -294,6 +295,7 @@ button:hover {
         display: flex;
         justify-content: center;
         margin-top: 1.5rem;
+        align-items: center;
         }
 
         #activate-tuner:hover {
@@ -358,6 +360,58 @@ button:hover {
         .dot-tuned { background: #28a745; box-shadow: 0 0 15px #28a745; }
         .dot-sharp { background: #fd7e14; box-shadow: 0 0 15px #fd7e14; }
         .dot-flat { background: #fd7e14; box-shadow: 0 0 15px #fd7e14; }
+        .scroll-wrapper {
+    max-height: 70vh; /* Adjust this value as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* To prevent content from touching the scrollbar */
+  }
+
+  /* For WebKit browsers (Chrome, Safari) */
+  .scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  /* For Firefox */
+  .scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .colorlib-navbar-brand {
+        flex: 1;
+    }
+}   
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slider-item {
+            height: 50vh;
+        }
+        .slider-text h1 {
+            font-size: 24px;
+        }
+        .slider-text p a {
+            font-size: 20px;
+        }
+    }
     </style>
 
 </head>
