@@ -488,6 +488,7 @@ button:hover {
         color: #777;
         transition: all 0.2s ease;
         padding: 0.2rem 0.5rem;
+        cursor: pointer;
     }
 
     .string-indicator.highlighted {
@@ -605,6 +606,58 @@ button:hover {
 
         .tuning-status {
             font-size: 1.3rem;
+        }
+    }
+    .scroll-wrapper {
+    max-height: 70vh; /* Adjust this value as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* To prevent content from touching the scrollbar */
+  }
+
+  /* For WebKit browsers (Chrome, Safari) */
+  .scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  /* For Firefox */
+  .scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .colorlib-navbar-brand {
+        flex: 1;
+    }
+}   
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slider-item {
+            height: 50vh;
+        }
+        .slider-text h1 {
+            font-size: 24px;
+        }
+        .slider-text p a {
+            font-size: 20px;
         }
     }
 </style>
@@ -1038,7 +1091,7 @@ button:hover {
     });
 </script> -->
 
-<script>
+<!-- <script>
     // --- DOM Elements ---
     const activateButton = document.getElementById('activate-tuner');
     const activationPrompt = document.getElementById('activation-prompt');
@@ -1213,6 +1266,252 @@ button:hover {
             const span = document.createElement('span');
             span.className = 'string-indicator';
             span.textContent = note.n;
+            stringDisplayContainer.appendChild(span);
+        });
+    }
+
+    // --- Initial Setup & Event Listeners ---
+    document.addEventListener('DOMContentLoaded', () => {
+        populateInstrumentSelect();
+        updateTuningOptions();
+
+        instrumentSelect.addEventListener('change', updateTuningOptions);
+        tuningSelect.addEventListener('change', updateStringDisplay);
+        
+        a4Slider.addEventListener('input', (e) => {
+            A4 = parseInt(e.target.value);
+            a4Display.textContent = A4;
+        });
+
+        activateButton.addEventListener('click', async () => {
+            if (!audioContext) {
+                if (await setupAudio()) {
+                    activationPrompt.style.display = 'none';
+                    tunerInterface.style.display = 'block';
+                }
+            } else if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        });
+    });
+</script> -->
+
+<script>
+    // --- DOM Elements ---
+    const activateButton = document.getElementById('activate-tuner');
+    const activationPrompt = document.getElementById('activation-prompt');
+    const tunerInterface = document.getElementById('tuner-interface');
+    const noteNameEl = document.getElementById('note-name');
+    const tuningStatusEl = document.getElementById('tuning-status');
+    const pitchDotEl = document.getElementById('pitch-dot');
+    const freqDisplayEl = document.getElementById('frequency-display');
+    const stringDisplayContainer = document.getElementById('string-display');
+    const instrumentSelect = document.getElementById('instrument-select');
+    const tuningSelect = document.getElementById('tuning-select');
+    const a4Slider = document.getElementById('a4-slider');
+    const a4Display = document.getElementById('a4-freq-display');
+
+    // --- Tuner Configuration & Data ---
+    let A4 = 440;
+    const notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+    let audioContext;
+    let correlationWorker;
+
+    const TUNINGS = {
+        guitar: {
+            name: 'Guitar',
+            tunings: {
+                standard: { name: 'Standard', notes: [{ n: 'E', o: 2 }, { n: 'A', o: 2 }, { n: 'D', o: 3 }, { n: 'G', o: 3 }, { n: 'B', o: 3 }, { n: 'E', o: 4 }] },
+                dropD: { name: 'Drop D', notes: [{ n: 'D', o: 2 }, { n: 'A', o: 2 }, { n: 'D', o: 3 }, { n: 'G', o: 3 }, { n: 'B', o: 3 }, { n: 'E', o: 4 }] },
+                dropC: { name: 'Drop C', notes: [{ n: 'C', o: 2 }, { n: 'G', o: 2 }, { n: 'C', o: 3 }, { n: 'F', o: 3 }, { n: 'A', o: 3 }, { n: 'D', o: 4 }] },
+                openG: { name: 'Open G', notes: [{ n: 'D', o: 2 }, { n: 'G', o: 2 }, { n: 'D', o: 3 }, { n: 'G', o: 3 }, { n: 'B', o: 3 }, { n: 'D', o: 4 }] }
+            }
+        },
+        bass: {
+            name: 'Bass (4-String)',
+            tunings: {
+                standard: { name: 'Standard', notes: [{ n: 'E', o: 1 }, { n: 'A', o: 1 }, { n: 'D', o: 2 }, { n: 'G', o: 2 }] }
+            }
+        },
+        ukulele: {
+            name: 'Ukulele',
+            tunings: {
+                standard: { name: 'Standard (GCEA)', notes: [{ n: 'G', o: 4 }, { n: 'C', o: 4 }, { n: 'E', o: 4 }, { n: 'A', o: 4 }] }
+            }
+        }
+    };
+
+    // --- ✅ NEW: Function to Play Reference Tone ---
+    function playNote(noteName, octave) {
+        if (!audioContext) {
+            alert('Please activate the tuner first to enable the audio context.');
+            return;
+        }
+
+        const frequency = getNoteFrequency(noteName, octave);
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        // Connect nodes: Oscillator -> Gain -> Destination (speakers)
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        // Configure the tone
+        oscillator.type = 'sine'; // A pure tone is best for reference
+        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+        // Configure volume with a smooth fade-in and fade-out to prevent clicking
+        const now = audioContext.currentTime;
+        gainNode.gain.setValueAtTime(0, now);
+        gainNode.gain.linearRampToValueAtTime(0.3, now + 0.05); // Fade in to 30% volume
+        gainNode.gain.linearRampToValueAtTime(0, now + 1.0); // Fade out over 1 second
+
+        // Start and stop the oscillator
+        oscillator.start(now);
+        oscillator.stop(now + 1.0);
+    }
+
+    // --- Core Audio & Processing Logic ---
+    async function setupAudio() {
+        try {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            await audioContext.audioWorklet.addModule('js/tuner-processor.js');
+            const tunerNode = new AudioWorkletNode(audioContext, 'tuner-processor');
+            const microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(tunerNode);
+            correlationWorker = new Worker("js/correlation_worker.js");
+            tunerNode.port.onmessage = (event) => correlationWorker.postMessage({ audioBuffer: event.data, sampleRate: audioContext.sampleRate });
+            correlationWorker.onmessage = (event) => processFrequency(event.data.frequency);
+            return true;
+        } catch (err) {
+            console.error("Failed to initialize audio:", err);
+            alert("Could not access the microphone. Please grant permission.");
+            return false;
+        }
+    }
+
+    function getNoteFrequency(noteName, octave) {
+        const noteIndex = notes.indexOf(noteName);
+        const halfStepsFromA4 = noteIndex - notes.indexOf('A') + (octave - 4) * 12;
+        return A4 * Math.pow(2, halfStepsFromA4 / 12);
+    }
+
+    function processFrequency(freq) {
+        if (freq === -1) {
+             updateUI({cents: 0, detectedNote: '--', detectedOctave: '', closestStringIndex: -1});
+             freqDisplayEl.textContent = '-- Hz';
+             return;
+        }
+
+        const currentTuningKey = tuningSelect.value;
+        const currentInstrumentKey = instrumentSelect.value;
+        const currentTuning = TUNINGS[currentInstrumentKey].tunings[currentTuningKey].notes;
+        
+        let closestStringIndex = -1;
+        let smallestCentsDiff = Infinity;
+
+        currentTuning.forEach((stringNote, index) => {
+            const targetFreq = getNoteFrequency(stringNote.n, stringNote.o);
+            const centsDiff = 1200 * Math.log2(freq / targetFreq);
+            if (Math.abs(centsDiff) < Math.abs(smallestCentsDiff)) {
+                smallestCentsDiff = centsDiff;
+                closestStringIndex = index;
+            }
+        });
+
+        const halfStepsFromA4 = Math.round(12 * Math.log2(freq / A4));
+        const detectedNote = notes[(halfStepsFromA4 % 12 + 12) % 12];
+        const detectedOctave = 4 + Math.floor(halfStepsFromA4 / 12);
+        
+        updateUI({
+            cents: smallestCentsDiff,
+            detectedNote,
+            detectedOctave,
+            closestStringIndex
+        });
+        freqDisplayEl.textContent = `${freq.toFixed(2)} Hz`;
+    }
+    
+    // --- UI Update Functions ---
+    function updateUI({ cents, detectedNote, detectedOctave, closestStringIndex }) {
+        noteNameEl.innerHTML = `${detectedNote}<sup>${detectedOctave}</sup>`;
+        
+        document.querySelectorAll('.string-indicator').forEach((el, i) => {
+            el.classList.remove('highlighted', 'tuned');
+            if (i === closestStringIndex) {
+                el.classList.add('highlighted');
+                if (Math.abs(cents) < 8) {
+                    el.classList.add('tuned');
+                }
+            }
+        });
+
+        tuningStatusEl.className = 'tuning-status';
+        pitchDotEl.className = '';
+
+        if (Math.abs(cents) < 8) {
+            tuningStatusEl.textContent = `In Tune (${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-tuned');
+            pitchDotEl.classList.add('dot-tuned');
+        } else if (cents > 0) {
+            tuningStatusEl.textContent = `Sharp (+${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-sharp');
+            pitchDotEl.classList.add('dot-sharp');
+        } else {
+            tuningStatusEl.textContent = `Flat (${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-flat');
+            pitchDotEl.classList.add('dot-flat');
+        }
+        
+        const clampedCents = Math.max(-50, Math.min(50, cents));
+        pitchDotEl.style.transform = `translate(-50%, -50%) translateX(${clampedCents * 2}%)`;
+    }
+    
+    function populateInstrumentSelect() {
+        for (const key in TUNINGS) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = TUNINGS[key].name;
+            instrumentSelect.appendChild(option);
+        }
+    }
+
+    function updateTuningOptions() {
+        const instrumentKey = instrumentSelect.value;
+        tuningSelect.innerHTML = '';
+        const tunings = TUNINGS[instrumentKey].tunings;
+        for (const key in tunings) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = tunings[key].name;
+            tuningSelect.appendChild(option);
+        }
+        updateStringDisplay();
+    }
+    
+    // --- ✅ MODIFIED: Make String Indicators Clickable ---
+    function updateStringDisplay() {
+        const instrumentKey = instrumentSelect.value;
+        const tuningKey = tuningSelect.value;
+        const tuning = TUNINGS[instrumentKey].tunings[tuningKey];
+        stringDisplayContainer.innerHTML = '';
+        tuning.notes.forEach(note => {
+            const span = document.createElement('span');
+            span.className = 'string-indicator';
+            span.textContent = note.n;
+            
+            // Add data attributes to store note info
+            span.dataset.note = note.n;
+            span.dataset.octave = note.o;
+
+            // Add the click event listener to play the note
+            span.addEventListener('click', (e) => {
+                const noteName = e.target.dataset.note;
+                const octave = parseInt(e.target.dataset.octave);
+                playNote(noteName, octave);
+            });
+
             stringDisplayContainer.appendChild(span);
         });
     }
