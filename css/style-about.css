@@ -7934,32 +7934,60 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
       display: block;
       height: 300px; } }
   
-  .wrap {
-    padding: 0; }
-    @media (max-width: 767.98px) {
-      .wrap {
-        margin-top: 40px; } }
-    @media (min-width: 768px) {
-      .wrap .about-desc {
-        position: relative; } }
-    .wrap .about-desc .bold-text {
-      position: absolute;
-      top: -80px;
-      left: -50px;
-      right: 0;
-      bottom: 0;
-      font-weight: 700 !important;
-      color: rgba(255, 255, 255, 0.08);
-      text-transform: uppercase; }
-      @media (min-width: 992px) {
-        .wrap .about-desc .bold-text {
-          font-size: 10em; } }
-      @media (max-width: 991.98px) {
-        .wrap .about-desc .bold-text {
-          display: none; } }
-      @media (max-width: 767.98px) {
-        .wrap .about-desc .bold-text {
-          display: none; } }
+ /*
+=============================================================
+FINAL FIX FOR ABOUT PAGE (TITLE, WRAPPING, & RESPONSIVENESS)
+=============================================================
+Replace the old '.bold-text' rules and add this to the
+bottom of your style-about.css file.
+*/
+
+/* This ensures the z-index fix works on all screen sizes */
+.wrap .about-desc {
+  position: relative;
+}
+
+/* Base style for the background title */
+.wrap .about-desc .bold-text {
+  position: absolute;
+  font-weight: 700 !important;
+  color: rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  z-index: -1; /* FIX 1: Pushes the title behind the content */
+  display: block !important; /* FIX 2: Prevents it from disappearing */
+}
+
+/* Mobile Styles (< 768px) */
+@media (max-width: 767.98px) {
+  .wrap .about-desc .bold-text {
+    font-size: 4.5em;
+    top: 50px;
+    left: -10px;
+  }
+  .section-title {
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+  }
+}
+
+/* Tablet Styles (768px - 992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .wrap .about-desc .bold-text {
+    font-size: 7em;
+    top: -40px;
+    left: -20px;
+  }
+}
+
+/* Desktop Styles (> 992px) */
+@media (min-width: 992px) {
+  .wrap .about-desc .bold-text {
+    font-size: 10em;
+    top: -80px;
+    left: -50px;
+  }
+}
   
   .profile {
     margin-bottom: 5em; }
@@ -8851,28 +8879,3 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
     100% {
       stroke-dasharray: 89, 200;
       stroke-dashoffset: -136px; } }
-
-@media (max-width: 767.98px) {
-
-  /*
-  * FIX 1: Make the background "Experiences" title visible on mobile.
-  * The original CSS was hiding it, so we're making it visible again
-  * and adjusting its size and position for smaller screens.
-  */
-  .wrap .about-desc .bold-text {
-    display: block !important; /* Makes the title visible */
-    font-size: 4.5em;          /* Reduces the font size */
-    top: 50px;                 /* Adjusts vertical position */
-    left: -10px;               /* Adjusts horizontal position */
-  }
-
-  /*
-  * FIX 2: Ensure long section titles wrap correctly.
-  * This prevents text from overflowing the screen as seen in your screenshot.
-  */
-  .section-title {
-    white-space: normal;      /* Allows the text to wrap to the next line */
-    overflow-wrap: break-word;  /* Breaks the word if it's too long to fit */
-    line-height: 1.4;         /* Improves readability for wrapped text */
-  }
-}
