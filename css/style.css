@@ -7487,19 +7487,38 @@
           /* color: white; */
           padding: 5px 0;
           }
-          #colorlib-main-nav ul li a span {
-            font-size: 40px;
-            /* color: white; */
-            position: relative;
-            padding: 0 10px;
-            }
-            #colorlib-main-nav ul li a span small {
-              position: absolute;
-              bottom: 15px;
-              left: -30px;
-              font-size: 16px;
-              color: #666666;
-              border-bottom: 1px solid #666666; }
+            
+/* 1. Center the whole menu, but left-align items within it. */
+#colorlib-main-nav ul {
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    list-style: none;
+}
+
+/* 2. Add vertical spacing between each menu item. */
+#colorlib-main-nav ul li {
+    padding: 10px 0;
+}
+
+/* 3. Use Flexbox on the inner SPAN for robust vertical alignment. */
+#colorlib-main-nav ul li a span {
+    display: flex;
+    align-items: baseline; /* Aligns number and text perfectly. */
+}
+
+/* 4. Style the number with original formatting and a fixed width. */
+#colorlib-main-nav ul li a span small {
+    flex-shrink: 0;
+    width: 45px;
+    margin-right: 20px;
+    font-size: 16px;
+    
+    /* --- Restored from original style --- */
+    color: #666666;                      /* Original number color. */
+    border-bottom: 0.5px solid #666666;   /* Original underline. */
+    padding-bottom: 2px;                 /* Lifts the underline slightly for a cleaner look. */
+}
             @media (max-width: 767.98px) {
               #colorlib-main-nav ul li a span {
                 font-size: 30px; } }
