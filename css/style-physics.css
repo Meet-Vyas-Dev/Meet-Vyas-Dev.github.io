@@ -7517,9 +7517,23 @@ h1, h2, h3, h4, h5,
     padding-bottom: 2px;                 /* Lifts the underline slightly for a cleaner look. */
 }
           @media (max-width: 767.98px) {
-            #colorlib-main-nav ul li a span {
-              font-size: 30px; } }
-        #colorlib-main-nav ul li a:hover, #colorlib-main-nav ul li a:active, #colorlib-main-nav ul li a:focus {
+          /* This rule for font-size was already here */
+          #colorlib-main-nav ul li a span {
+          font-size: 30px;
+          }
+
+          /* Revert the menu to a simple centered layout */
+          #colorlib-main-nav ul {
+          display: block;
+          text-align: center;
+          }
+
+          /* Remove the fixed width from the numbers */
+          #colorlib-main-nav ul li a span small {
+          width: auto;
+          }
+          }
+          #colorlib-main-nav ul li a:hover, #colorlib-main-nav ul li a:active, #colorlib-main-nav ul li a:focus {
           outline: none;
           text-decoration: none; }
           #colorlib-main-nav ul li a:hover span:before, #colorlib-main-nav ul li a:active span:before, #colorlib-main-nav ul li a:focus span:before {
@@ -7529,10 +7543,10 @@ h1, h2, h3, h4, h5,
             -ms-transform: scaleX(1);
             -o-transform: scaleX(1);
             transform: scaleX(1); }
-      #colorlib-main-nav ul li.active a span {
-        color: #ffffff;
-        }
-        #colorlib-main-nav ul li.active a span:before {
+          #colorlib-main-nav ul li.active a span {
+          color: #ffffff;
+          }
+          #colorlib-main-nav ul li.active a span:before {
           background: #2f89fc;
           visibility: visible;
           -webkit-transform: scaleX(1);
