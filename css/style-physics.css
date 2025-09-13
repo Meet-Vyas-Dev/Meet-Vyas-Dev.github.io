@@ -7520,7 +7520,6 @@ h1, h2, h3, h4, h5,
           /* This rule for font-size was already here */
           #colorlib-main-nav ul li a span {
           font-size: 30px;
-          justify-content: center;
           }
 
           /* Revert the menu to a simple centered layout */
