@@ -7934,12 +7934,10 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
       display: block;
       height: 300px; } }
   
- /*
-=============================================================
-FINAL FIX FOR ABOUT PAGE (TITLE, WRAPPING, & RESPONSIVENESS)
-=============================================================
-Replace the old '.bold-text' rules and add this to the
-bottom of your style-about.css file.
+/*
+===================================================================
+CORRECTED FIX FOR ABOUT PAGE (TITLE STACKING & RESPONSIVENESS)
+===================================================================
 */
 
 /* This ensures the z-index fix works on all screen sizes */
@@ -7947,19 +7945,31 @@ bottom of your style-about.css file.
   position: relative;
 }
 
-/* Base style for the background title */
+/* Base style for the background title. We remove z-index from here. */
 .wrap .about-desc .bold-text {
   position: absolute;
   font-weight: 700 !important;
   color: rgba(255, 255, 255, 0.08);
   text-transform: uppercase;
-  z-index: -1; /* FIX 1: Pushes the title behind the content */
-  display: block !important; /* FIX 2: Prevents it from disappearing */
+  display: block !important;
 }
+
+/* NEW RULE: This lifts the main content (like "More About Me") 
+  and the experience sections above the background titles.
+*/
+.about-desc .p-5,
+.exp {
+  position: relative;
+  z-index: 1;
+}
+
 
 .wrap {
   overflow-x: hidden;
 }
+
+/* --- MEDIA QUERIES (Unchanged) --- */
+
 /* Mobile Styles (< 768px) */
 @media (max-width: 767.98px) {
   .wrap .about-desc .bold-text {
@@ -8882,16 +8892,3 @@ bottom of your style-about.css file.
     100% {
       stroke-dasharray: 89, 200;
       stroke-dashoffset: -136px; } }
-
-@media (max-width: 767.98px) {
-.section-title {
-/* Allows the long title text to wrap onto the next line */
-white-space: normal;
-
-/* A safeguard that forces a word to break if it's too long to fit */
-overflow-wrap: break-word;
-
-/* Improves readability for the newly wrapped text */
-line-height: 1.4;
-}
-}
