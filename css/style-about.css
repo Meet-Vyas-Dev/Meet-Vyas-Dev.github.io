@@ -7991,7 +7991,29 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
       font-size: small;
       text-align: right;
       }
-  
+      
+  @media (max-width: 768px) {
+  .exp-wrap {
+    display: block; /* break float-based layout */
+  }
+
+  .exp-wrap .desc,
+  .exp-wrap .year {
+    float: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .exp-wrap .year {
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* slightly smaller on mobile */
+  }
+
+  .exp-wrap .desc {
+    width: 100%; /* full width for description */
+  }
+}
   .progress-wrap {
     margin-bottom: 30px; }
     .progress-wrap h4 {
