@@ -7957,6 +7957,9 @@ bottom of your style-about.css file.
   display: block !important; /* FIX 2: Prevents it from disappearing */
 }
 
+.wrap {
+  overflow-x: hidden;
+}
 /* Mobile Styles (< 768px) */
 @media (max-width: 767.98px) {
   .wrap .about-desc .bold-text {
@@ -8879,3 +8882,16 @@ bottom of your style-about.css file.
     100% {
       stroke-dasharray: 89, 200;
       stroke-dashoffset: -136px; } }
+
+@media (max-width: 767.98px) {
+.section-title {
+/* Allows the long title text to wrap onto the next line */
+white-space: normal;
+
+/* A safeguard that forces a word to break if it's too long to fit */
+overflow-wrap: break-word;
+
+/* Improves readability for the newly wrapped text */
+line-height: 1.4;
+}
+}
