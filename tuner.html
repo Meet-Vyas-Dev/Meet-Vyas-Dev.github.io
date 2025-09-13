@@ -548,8 +548,9 @@ button:hover {
     <!-- <script src="js/google-map.js"></script> -->
     <script src="js/main.js"></script>
     <script src="https://kit.fontawesome.com/a95309870d.js" crossorigin="anonymous"></script>
+    <script src="js/tuner-processor.js"></script>
 
-    <script>
+    <!-- <script>
         // --- DOM Elements ---
         const activateButton = document.getElementById('activate-tuner');
         const tunerInterface = document.getElementById('tuner-interface');
@@ -703,6 +704,122 @@ button:hover {
         // --- Event Listeners ---
         activateButton.addEventListener('click', startTuner);
 
-    </script>
+    </script> -->
+
+    <script>
+    // --- DOM Elements ---
+    const activateButton = document.getElementById('activate-tuner');
+    const tunerInterface = document.getElementById('tuner-interface');
+    const noteNameEl = document.getElementById('note-name');
+    const octaveEl = document.getElementById('octave');
+    const tuningStatusEl = document.getElementById('tuning-status');
+    const pitchDotEl = document.getElementById('pitch-dot');
+
+    // --- Tuner Configuration ---
+    const A4 = 440;
+    const notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+    let audioContext;
+    let correlationWorker;
+
+    // --- Core Functions ---
+    async function setupAudio() {
+        try {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            
+            // Load the AudioWorklet processor
+            await audioContext.audioWorklet.addModule('js/tuner-processor.js');
+            const tunerNode = new AudioWorkletNode(audioContext, 'tuner-processor');
+            
+            // Connect the microphone to the worklet
+            const microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(tunerNode);
+            
+            // Set up the pitch detection worker
+            correlationWorker = new Worker("js/correlation_worker.js");
+
+            // Listen for messages from the AudioWorklet (containing audio data)
+            tunerNode.port.onmessage = (event) => {
+                correlationWorker.postMessage({
+                    audioBuffer: event.data,
+                    sampleRate: audioContext.sampleRate,
+                });
+            };
+            
+            // Listen for messages from the pitch detection worker (containing frequency)
+            correlationWorker.onmessage = (event) => {
+                const { frequency } = event.data;
+                if (frequency !== -1) {
+                    processFrequency(frequency);
+                }
+            };
+            
+            return true; // Success
+        } catch (err) {
+            console.error("Failed to initialize audio:", err);
+            alert("Could not access the microphone. Please grant permission and refresh the page.");
+            return false;
+        }
+    }
+
+    function processFrequency(freq) {
+        // Calculate how many half-steps away from A4 the frequency is
+        const halfStepsFromA4 = 12 * Math.log2(freq / A4);
+        const noteIndex = Math.round(halfStepsFromA4);
+        
+        // Get the closest note's properties
+        const closestNoteName = notes[(noteIndex % 12 + 12) % 12];
+        const closestOctave = 4 + Math.floor((noteIndex + 9) / 12);
+        const closestNoteFreq = A4 * Math.pow(2, noteIndex / 12);
+
+        // Calculate the deviation in cents
+        const centsDeviation = 1200 * Math.log2(freq / closestNoteFreq);
+
+        updateUI(closestNoteName, closestOctave, centsDeviation);
+    }
+
+    function updateUI(noteName, octave, cents) {
+        noteNameEl.textContent = noteName;
+        octaveEl.textContent = octave;
+
+        // Reset classes
+        tuningStatusEl.className = 'tuning-status';
+        pitchDotEl.className = '';
+
+        // Determine tuning status and update UI
+        if (Math.abs(cents) < 10) { // In tune range
+            tuningStatusEl.textContent = 'In Tune';
+            tuningStatusEl.classList.add('status-tuned');
+            pitchDotEl.classList.add('dot-tuned');
+        } else if (cents > 0) {
+            tuningStatusEl.textContent = `Sharp (+${cents.toFixed(0)})`;
+            tuningStatusEl.classList.add('status-sharp');
+            pitchDotEl.classList.add('dot-sharp');
+        } else {
+            tuningStatusEl.textContent = `Flat (${cents.toFixed(0)})`;
+            tuningStatusEl.classList.add('status-flat');
+            pitchDotEl.classList.add('dot-flat');
+        }
+
+        // Position the dot based on cents deviation. Clamp between -50 and 50.
+        const clampedCents = Math.max(-50, Math.min(50, cents));
+        const position = `${clampedCents}%`; // Position directly corresponds to cents
+        pitchDotEl.style.transform = `translate(-50%, -50%) translateX(${position})`;
+    }
+
+    // --- Event Listener ---
+    activateButton.addEventListener('click', async () => {
+        // Resume AudioContext on user interaction
+        if (!audioContext) {
+            const success = await setupAudio();
+            if (success) {
+                 activateButton.style.display = 'none';
+                 tunerInterface.style.display = 'block';
+            }
+        } else if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    });
+</script>
 </body>
 </html>
