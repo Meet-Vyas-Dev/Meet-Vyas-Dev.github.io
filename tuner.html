@@ -258,7 +258,7 @@ button:hover {
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
+    <!-- <style>
         .tuner-section {
             display: flex;
             align-items: center;
@@ -412,7 +412,202 @@ button:hover {
             font-size: 20px;
         }
     }
-    </style>
+    </style> -->
+
+    <style>
+    .tuner-section {
+        display: flex;
+        align-items: flex-start; /* Align to top */
+        justify-content: center;
+        min-height: 80vh;
+        color: #fff;
+        padding-top: 3rem;
+    }
+
+    .tuner-wrapper {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(18, 18, 18, 0.9);
+        padding: 2rem 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+    }
+
+    /* Controls Styling */
+    .controls-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .control-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .control-group label {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+
+    .tuner-select {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .a4-slider-group {
+        grid-column: 1 / -1; /* Make slider span both columns */
+    }
+
+    #a4-slider {
+        width: 100%;
+    }
+
+    /* String Display */
+    .string-display-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        min-height: 40px;
+    }
+
+    .string-indicator {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #777;
+        transition: all 0.2s ease;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .string-indicator.highlighted {
+        color: #ffd700; /* Yellow */
+        transform: scale(1.2);
+    }
+
+    .string-indicator.tuned {
+        color: #28a745; /* Green */
+        text-shadow: 0 0 10px #28a745;
+    }
+
+    /* Tuner Display */
+    #note-display {
+        height: 120px;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+    }
+
+    #note-name {
+        font-size: 8rem;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    #note-name sup {
+        font-size: 3rem;
+        font-weight: 300;
+        opacity: 0.8;
+        margin-left: 0.1em;
+    }
+
+    .pitch-indicator-bar {
+        width: 100%;
+        height: 10px;
+        background: #333;
+        border-radius: 5px;
+        position: relative;
+        margin: 1rem 0;
+    }
+
+    #pitch-dot {
+        width: 20px;
+        height: 20px;
+        background: #ccc;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%; /* Start at center */
+        transform: translate(-50%, -50%);
+        transition: all 0.2s ease-out;
+    }
+
+    .tuning-status {
+        font-size: 1.7rem;
+        font-weight: 500;
+        height: 35px; /* Reserve space */
+        transition: color 0.3s ease;
+    }
+    
+    .frequency-readout {
+        color: #999;
+        font-size: 1rem;
+        height: 20px;
+    }
+
+    /* Status Colors */
+    .status-tuned { color: #28a745; }
+    .status-sharp, .status-flat { color: #fd7e14; }
+    .dot-tuned { background: #28a745; box-shadow: 0 0 15px #28a745; }
+    .dot-sharp, .dot-flat { background: #fd7e14; }
+
+    /* Button Styling */
+    .button-container { text-align: center; }
+
+    #activate-tuner {
+        background-color: #ffd700;
+        color: #121212;
+        border: none;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    /* --- ✅ Mobile Responsiveness --- */
+    @media (max-width: 768px) {
+        .tuner-wrapper {
+            padding: 1.5rem 1rem;
+        }
+
+        .controls-grid {
+            grid-template-columns: 1fr; /* Stack controls vertically */
+            gap: 1rem;
+        }
+        
+        #note-display {
+            height: 90px;
+        }
+
+        #note-name {
+            font-size: 6rem; /* Reduce note size */
+        }
+
+        #note-name sup {
+            font-size: 2rem; /* Reduce octave size */
+        }
+
+        .string-indicator {
+            font-size: 1.2rem;
+            padding: 0.2rem 0.3rem;
+        }
+
+        .tuning-status {
+            font-size: 1.3rem;
+        }
+    }
+</style>
 
 </head>
 <body>
@@ -464,35 +659,56 @@ button:hover {
             </header>
 
             <section class="ftco-section tuner-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 text-center heading-section ftco-animate">
-                            <h2>Instrument Tuner</h2>
-                            <p>Activate the tuner and play a note into your microphone.</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 style="font-size: 3em; color: #fff;">Instrument Tuner</h2>
+                <p style="color: #ccc;">Select an instrument and tuning, then play a note.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 ftco-animate">
+                <div class="tuner-wrapper">
+
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label for="instrument-select">Instrument</label>
+                            <select id="instrument-select" class="tuner-select"></select>
+                        </div>
+                        <div class="control-group">
+                            <label for="tuning-select">Tuning</label>
+                            <select id="tuning-select" class="tuner-select"></select>
+                        </div>
+                        <div class="control-group a4-slider-group">
+                            <label for="a4-slider">Reference: <span id="a4-freq-display">440</span> Hz</label>
+                            <input type="range" id="a4-slider" min="430" max="450" value="440" step="1">
                         </div>
                     </div>
-                    <div class="row justify-content-center mt-5">
-                        <div class="col-md-12 ftco-animate">
-                            <div class="tuner-wrapper">
-                                <div id="tuner-interface" style="display: none;">
-                                    <div class="note-display">
-                                        <span id="note-name">--</span>
-                                        <sup id="octave"></sup>
-                                    </div>
-                                    <div class="pitch-indicator-bar">
-                                        <div id="pitch-dot"></div>
-                                    </div>
-                                    <div id="tuning-status" class="tuning-status">Awaiting Input</div>
-                                </div>
-                                <!-- ✅ Centered button -->
-                                <div class="button-container">
-                                    <button id="activate-tuner">Activate Tuner</button>
-                                </div>
-                            </div>
+
+                    <div id="string-display" class="string-display-container">
                         </div>
+
+                    <div id="tuner-interface" style="display: none;">
+                        <div id="note-display">
+                            <span id="note-name">--</span>
+                            <sup id="octave"></sup>
+                        </div>
+                        <div class="pitch-indicator-bar">
+                            <div id="pitch-dot"></div>
+                        </div>
+                        <div id="tuning-status" class="tuning-status">Awaiting Input</div>
+                        <div id="frequency-display" class="frequency-readout">-- Hz</div>
                     </div>
+
+                    <div id="activation-prompt" class="button-container">
+                        <button id="activate-tuner">Activate Tuner</button>
+                    </div>
+
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</section>
 
             <footer class="ftco-footer ftco-bg-dark ftco-section">
                 <div class="container">
@@ -706,7 +922,7 @@ button:hover {
 
     </script> -->
 
-    <script>
+    <!-- <script>
     // --- DOM Elements ---
     const activateButton = document.getElementById('activate-tuner');
     const tunerInterface = document.getElementById('tuner-interface');
@@ -820,6 +1036,212 @@ button:hover {
             audioContext.resume();
         }
     });
+</script> -->
+
+<script>
+    // --- DOM Elements ---
+    const activateButton = document.getElementById('activate-tuner');
+    const activationPrompt = document.getElementById('activation-prompt');
+    const tunerInterface = document.getElementById('tuner-interface');
+    const noteNameEl = document.getElementById('note-name');
+    const tuningStatusEl = document.getElementById('tuning-status');
+    const pitchDotEl = document.getElementById('pitch-dot');
+    const freqDisplayEl = document.getElementById('frequency-display');
+    const stringDisplayContainer = document.getElementById('string-display');
+    const instrumentSelect = document.getElementById('instrument-select');
+    const tuningSelect = document.getElementById('tuning-select');
+    const a4Slider = document.getElementById('a4-slider');
+    const a4Display = document.getElementById('a4-freq-display');
+
+    // --- Tuner Configuration & Data ---
+    let A4 = 440;
+    const notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+    let audioContext;
+    let correlationWorker;
+
+    const TUNINGS = {
+        guitar: {
+            name: 'Guitar',
+            tunings: {
+                standard: { name: 'Standard', notes: [{ n: 'E', o: 4 }, { n: 'B', o: 3 }, { n: 'G', o: 3 }, { n: 'D', o: 3 }, { n: 'A', o: 2 }, { n: 'E', o: 2 }] },
+                dropD: { name: 'Drop D', notes: [{ n: 'E', o: 4 }, { n: 'B', o: 3 }, { n: 'G', o: 3 }, { n: 'D', o: 3 }, { n: 'A', o: 2 }, { n: 'D', o: 2 }] },
+                dropC: { name: 'Drop C', notes: [{ n: 'D', o: 4 }, { n: 'A', o: 3 }, { n: 'F', o: 3 }, { n: 'C', o: 3 }, { n: 'G', o: 2 }, { n: 'C', o: 2 }] },
+                openG: { name: 'Open G', notes: [{ n: 'D', o: 4 }, { n: 'B', o: 3 }, { n: 'G', o: 3 }, { n: 'D', o: 3 }, { n: 'G', o: 2 }, { n: 'D', o: 2 }] }
+            }
+        },
+        bass: {
+            name: 'Bass (4-String)',
+            tunings: {
+                standard: { name: 'Standard', notes: [{ n: 'G', o: 2 }, { n: 'D', o: 2 }, { n: 'A', o: 1 }, { n: 'E', o: 1 }] }
+            }
+        },
+        ukulele: {
+            name: 'Ukulele',
+            tunings: {
+                standard: { name: 'Standard (GCEA)', notes: [{ n: 'A', o: 4 }, { n: 'E', o: 4 }, { n: 'C', o: 4 }, { n: 'G', o: 4 }] }
+            }
+        }
+    };
+
+    // --- Core Audio & Processing Logic ---
+    async function setupAudio() {
+        try {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            await audioContext.audioWorklet.addModule('js/tuner-processor.js');
+            const tunerNode = new AudioWorkletNode(audioContext, 'tuner-processor');
+            const microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(tunerNode);
+            correlationWorker = new Worker("js/correlation_worker.js");
+            tunerNode.port.onmessage = (event) => correlationWorker.postMessage({ audioBuffer: event.data, sampleRate: audioContext.sampleRate });
+            correlationWorker.onmessage = (event) => processFrequency(event.data.frequency);
+            return true;
+        } catch (err) {
+            console.error("Failed to initialize audio:", err);
+            alert("Could not access the microphone. Please grant permission.");
+            return false;
+        }
+    }
+
+    function getNoteFrequency(noteName, octave) {
+        const noteIndex = notes.indexOf(noteName);
+        const halfStepsFromA4 = noteIndex - notes.indexOf('A') + (octave - 4) * 12;
+        return A4 * Math.pow(2, halfStepsFromA4 / 12);
+    }
+
+    function processFrequency(freq) {
+        if (freq === -1) {
+             updateUI({cents: 0, detectedNote: '--', detectedOctave: '', closestStringIndex: -1});
+             freqDisplayEl.textContent = '-- Hz';
+             return;
+        }
+
+        const currentTuningKey = tuningSelect.value;
+        const currentInstrumentKey = instrumentSelect.value;
+        const currentTuning = TUNINGS[currentInstrumentKey].tunings[currentTuningKey].notes;
+        
+        let closestStringIndex = -1;
+        let smallestCentsDiff = Infinity;
+
+        currentTuning.forEach((stringNote, index) => {
+            const targetFreq = getNoteFrequency(stringNote.n, stringNote.o);
+            const centsDiff = 1200 * Math.log2(freq / targetFreq);
+            if (Math.abs(centsDiff) < Math.abs(smallestCentsDiff)) {
+                smallestCentsDiff = centsDiff;
+                closestStringIndex = index;
+            }
+        });
+
+        const halfStepsFromA4 = Math.round(12 * Math.log2(freq / A4));
+        const detectedNote = notes[(halfStepsFromA4 % 12 + 12) % 12];
+        const detectedOctave = 4 + Math.floor(halfStepsFromA4 / 12);
+        
+        updateUI({
+            cents: smallestCentsDiff,
+            detectedNote,
+            detectedOctave,
+            closestStringIndex
+        });
+        freqDisplayEl.textContent = `${freq.toFixed(2)} Hz`;
+    }
+    
+    // --- UI Update Functions ---
+    function updateUI({ cents, detectedNote, detectedOctave, closestStringIndex }) {
+        noteNameEl.innerHTML = `${detectedNote}<sup>${detectedOctave}</sup>`;
+        
+        // Update string indicators
+        document.querySelectorAll('.string-indicator').forEach((el, i) => {
+            el.classList.remove('highlighted', 'tuned');
+            if (i === closestStringIndex) {
+                el.classList.add('highlighted');
+                if (Math.abs(cents) < 8) { // Threshold for "tuned" highlight
+                    el.classList.add('tuned');
+                }
+            }
+        });
+
+        // Update status text and pitch dot
+        tuningStatusEl.className = 'tuning-status';
+        pitchDotEl.className = '';
+
+        if (Math.abs(cents) < 8) {
+            tuningStatusEl.textContent = `In Tune (${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-tuned');
+            pitchDotEl.classList.add('dot-tuned');
+        } else if (cents > 0) {
+            tuningStatusEl.textContent = `Sharp (+${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-sharp');
+            pitchDotEl.classList.add('dot-sharp');
+        } else {
+            tuningStatusEl.textContent = `Flat (${cents.toFixed(1)} cents)`;
+            tuningStatusEl.classList.add('status-flat');
+            pitchDotEl.classList.add('dot-flat');
+        }
+        
+        const clampedCents = Math.max(-50, Math.min(50, cents));
+        pitchDotEl.style.transform = `translate(-50%, -50%) translateX(${clampedCents * 2}%)`; // Multiply by 2 for more visible movement
+    }
+    
+    function populateInstrumentSelect() {
+        for (const key in TUNINGS) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = TUNINGS[key].name;
+            instrumentSelect.appendChild(option);
+        }
+    }
+
+    function updateTuningOptions() {
+        const instrumentKey = instrumentSelect.value;
+        tuningSelect.innerHTML = '';
+        const tunings = TUNINGS[instrumentKey].tunings;
+        for (const key in tunings) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = tunings[key].name;
+            tuningSelect.appendChild(option);
+        }
+        updateStringDisplay();
+    }
+    
+    function updateStringDisplay() {
+        const instrumentKey = instrumentSelect.value;
+        const tuningKey = tuningSelect.value;
+        const tuning = TUNINGS[instrumentKey].tunings[tuningKey];
+        stringDisplayContainer.innerHTML = '';
+        tuning.notes.forEach(note => {
+            const span = document.createElement('span');
+            span.className = 'string-indicator';
+            span.textContent = note.n;
+            stringDisplayContainer.appendChild(span);
+        });
+    }
+
+    // --- Initial Setup & Event Listeners ---
+    document.addEventListener('DOMContentLoaded', () => {
+        populateInstrumentSelect();
+        updateTuningOptions();
+
+        instrumentSelect.addEventListener('change', updateTuningOptions);
+        tuningSelect.addEventListener('change', updateStringDisplay);
+        
+        a4Slider.addEventListener('input', (e) => {
+            A4 = parseInt(e.target.value);
+            a4Display.textContent = A4;
+        });
+
+        activateButton.addEventListener('click', async () => {
+            if (!audioContext) {
+                if (await setupAudio()) {
+                    activationPrompt.style.display = 'none';
+                    tunerInterface.style.display = 'block';
+                }
+            } else if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        });
+    });
 </script>
+
 </body>
 </html>
