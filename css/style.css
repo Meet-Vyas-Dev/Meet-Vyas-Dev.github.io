@@ -7306,7 +7306,9 @@
       background-position: center center;
     }
 
-  
+    #colorlib-page {
+    background: transparent !important;
+    }
     body.menu-show {
       overflow: hidden;
       position: fixed;
