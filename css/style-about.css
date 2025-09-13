@@ -8851,4 +8851,28 @@ padding-bottom: 2px;                 /* Lifts the underline slightly for a clean
     100% {
       stroke-dasharray: 89, 200;
       stroke-dashoffset: -136px; } }
-  
+
+@media (max-width: 767.98px) {
+
+  /*
+  * FIX 1: Make the background "Experiences" title visible on mobile.
+  * The original CSS was hiding it, so we're making it visible again
+  * and adjusting its size and position for smaller screens.
+  */
+  .wrap .about-desc .bold-text {
+    display: block !important; /* Makes the title visible */
+    font-size: 4.5em;          /* Reduces the font size */
+    top: 50px;                 /* Adjusts vertical position */
+    left: -10px;               /* Adjusts horizontal position */
+  }
+
+  /*
+  * FIX 2: Ensure long section titles wrap correctly.
+  * This prevents text from overflowing the screen as seen in your screenshot.
+  */
+  .section-title {
+    white-space: normal;      /* Allows the text to wrap to the next line */
+    overflow-wrap: break-word;  /* Breaks the word if it's too long to fit */
+    line-height: 1.4;         /* Improves readability for wrapped text */
+  }
+}
