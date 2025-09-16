@@ -334,6 +334,32 @@
 		transform: scale(0.8); /* Slightly smaller for collapsed state */
 	}
 
+.scroll-wrapper {
+    max-height: 70vh; /* Adjust this value as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* To prevent content from touching the scrollbar */
+  }
+
+  /* For WebKit browsers (Chrome, Safari) */
+  .scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  /* For Firefox */
+  .scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  }
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .colorlib-navbar-brand {
@@ -360,33 +386,6 @@
             font-size: 20px;
         }
     }
-
-	.scroll-wrapper {
-    max-height: 70vh; /* Adjust this value as needed */
-    overflow-y: auto;
-    padding-right: 15px; /* To prevent content from touching the scrollbar */
-  }
-
-  /* For WebKit browsers (Chrome, Safari) */
-  .scroll-wrapper::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .scroll-wrapper::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .scroll-wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
-
-  /* For Firefox */
-  .scroll-wrapper {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
-  }
-
 
 </style>
 
@@ -417,7 +416,7 @@
                                         <li><a target="_self" href="projects.html"><span><small>05</small>Course Projects</span></a></li>
                                         <li><a target="_self" href="blog.html"><span><small>06</small>Blog</span></a></li>                                
                                         <li><a target="_self" href="https://meet-vyas.notion.site/2096f14202de434995ea109d4381ca71?v=227db1b3a43446a98e2aaa79d7ff9461&amp;pvs=4"><span><small>07</small>Reading List</span></a></li>
-                                        <li><a target="_self" href="references.html"><span><small>08</small>References &amp;amp; Textbooks</span></a></li>     
+                                        <li><a target="_self" href="references.html"><span><small>08</small>References &amp; Textbooks</span></a></li>     
                                         <li><a target="_self" href="tuner.html"><span><small>09</small>Tuner</span></a></li>     
                                          
                                     </ul>
