@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MS4Q7FTK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HRKZ2KVF1N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HRKZ2KVF1N');
+    </script>
+
+    <title>MorseCraft Trainer | Meet Vyas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="pics/astronaut_favicon.png">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+    .scroll-wrapper {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .scroll-wrapper::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    .scroll-wrapper {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+    }
+
+    /* MorseCraft Trainer Specific Styles */
+    .morse-section {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 80vh;
+        color: #fff;
+        padding-top: 3rem;
+    }
+
+    .morse-wrapper {
+        width: 100%;
+        max-width: 900px;
+        background: rgba(18, 18, 18, 0.9);
+        padding: 2.5rem 3rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #ffd700;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .controls {
+        display: grid;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .control-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .control-group label {
+        font-weight: 500;
+        min-width: 150px;
+        color: #aaa;
+        font-size: 0.95rem;
+    }
+
+    input[type="range"] {
+        flex: 1;
+        min-width: 200px;
+        accent-color: #ffd700;
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        background-color: #333;
+        border: 1px solid #555;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        flex: 1;
+        max-width: 100%;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #ffd700;
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+    }
+
+    .value-display {
+        min-width: 80px;
+        font-weight: 600;
+        color: #ffd700;
+        text-align: right;
+    }
+
+    .mode-toggle {
+        display: flex;
+        gap: 12px;
+    }
+
+    .mode-btn {
+        padding: 10px 24px;
+        border: 1px solid #555;
+        background: #333;
+        color: #aaa;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .mode-btn.active {
+        background: #ffd700;
+        color: #121212;
+        border-color: #ffd700;
+    }
+
+    .mode-btn:hover {
+        background: #444;
+        color: #fff;
+    }
+
+    .mode-btn.active:hover {
+        background: #d0ff00;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .morse-btn {
+        padding: 11px 22px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .morse-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .morse-btn:active {
+        transform: translateY(0);
+    }
+
+    .btn-success {
+        background: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background: #218838;
+    }
+
+    .btn-primary {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #0069d9;
+    }
+
+    .btn-warning {
+        background: #fd7e14;
+        color: white;
+    }
+
+    .btn-warning:hover {
+        background: #e67300;
+    }
+
+    .btn-danger {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #c82333;
+    }
+
+    .btn-info {
+        background: #17a2b8;
+        color: white;
+    }
+
+    .btn-info:hover {
+        background: #138496;
+    }
+
+    .btn-default {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-default:hover {
+        background: #5a6268;
+    }
+
+    .status-area {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 1.5rem;
+        min-height: 450px;
+        max-height: 500px;
+        overflow-y: auto;
+        font-family: 'Courier New', monospace;
+        white-space: pre-wrap;
+        color: #ddd;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .status-area::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .status-area::-webkit-scrollbar-track {
+        background: #222;
+    }
+
+    .status-area::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 4px;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .stat-card {
+        background: rgba(255, 215, 0, 0.1);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        color: #ffd700;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+        color: #fff;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .reference-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+    }
+
+    .reference-table th,
+    .reference-table td {
+        padding: 12px;
+        border: 1px solid #333;
+        text-align: center;
+    }
+
+    .reference-table th {
+        background: rgba(255, 215, 0, 0.2);
+        color: #ffd700;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .reference-table tr {
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .reference-table tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .correct {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .wrong {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .morse-wrapper {
+            padding: 1.5rem 1rem;
+        }
+
+        .control-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .control-group label {
+            min-width: auto;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .morse-btn {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="KW_progressContainer">
+        <div class="KW_progressBar"></div>
+    </div>
+    
+    <div class="page">
+        <nav id="colorlib-main-nav" role="navigation">
+            <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
+            <div class="js-fullheight colorlib-table">
+                <div class="img" style="background-image: url(pics/background.jpg);"></div>
+                <div class="colorlib-table-cell js-fullheight">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 text-center">
+                            <h1 class="mb-4"><a href="index.html" class="logo" style="color: #fff">Meet Vyas</a></h1>
+                            <div class="scroll-wrapper">
+                                <ul>
+                                    <li><a target="_self" href="index.html"><span><small>01</small>Home</span></a></li>
+                                    <li><a target="_self" href="about.html"><span><small>02</small>About</span></a></li>
+                                    <li><a target="_self" href="physics.html"><span><small>03</small>Physics</span></a></li>
+                                    <li><a target="_self" href="comp.html"><span><small>04</small>Computer Science</span></a></li>
+                                    <li><a target="_self" href="projects.html"><span><small>05</small>Course Projects</span></a></li>
+                                    <li><a target="_self" href="blog.html"><span><small>06</small>Blog</span></a></li>                                
+                                    <li><a target="_self" href="https://meet-vyas.notion.site/2096f14202de434995ea109d4381ca71?v=227db1b3a43446a98e2aaa79d7ff9461&pvs=4"><span><small>07</small>Reading List</span></a></li>
+                                    <li><a target="_self" href="references.html"><span><small>08</small>References &amp; Textbooks</span></a></li>     
+                                    <li><a target="_self" href="tuner.html"><span><small>09</small>Tuner</span></a></li>
+                                    <li class="active"><a target="_self" href="morse_trainer.html"><span><small>10</small>Morse Trainer</span></a></li>     
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="colorlib-page">
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="colorlib-navbar-brand">
+                                <a class="colorlib-logo" href="index.html" style="color: #ffffff;"><span class="logo-img" style="background-image: url(pics/corner.jpg)"></span> Meet Vyas </a>
+                            </div>
+                            <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="ftco-section morse-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 text-center heading-section ftco-animate">
+                            <h2 style="font-size: 3em; color: #fff;">MorseCraft Trainer</h2>
+                            <p style="color: #ccc;">Interactive Morse Code Learning System - Koch Method</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-md-12 ftco-animate">
+                            <div class="morse-wrapper">
+                                <!-- Training Settings -->
+                                <div class="section-title">Training Settings</div>
+                                <div class="controls">
+                                    <div class="control-group">
+                                        <label>Mode:</label>
+                                        <div class="mode-toggle">
+                                            <button class="mode-btn active" onclick="setMode('letter')">Letter</button>
+                                            <button class="mode-btn" onclick="setMode('word')">Word</button>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Items per session:</label>
+                                        <input type="range" id="itemsSlider" min="1" max="30" value="8" oninput="updateValue('items')">
+                                        <span class="value-display" id="itemsValue">8</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Speed (dot duration):</label>
+                                        <input type="range" id="speedSlider" min="0.04" max="0.2" step="0.01" value="0.09" oninput="updateValue('speed')">
+                                        <span class="value-display" id="speedValue">0.09s</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Tone frequency:</label>
+                                        <input type="range" id="freqSlider" min="400" max="1400" step="50" value="700" oninput="updateValue('freq')">
+                                        <span class="value-display" id="freqValue">700 Hz</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label>Spacing multiplier:</label>
+                                        <input type="range" id="spacingSlider" min="1.0" max="2.5" step="0.1" value="1.0" oninput="updateValue('spacing')">
+                                        <span class="value-display" id="spacingValue">1.0x</span>
+                                    </div>
+                                </div>
+
+                                <!-- Session Controls -->
+                                <div class="section-title">Session Controls</div>
+                                <div class="buttons">
+                                    <button class="morse-btn btn-success" onclick="startSession()">Start Session</button>
+                                    <button class="morse-btn btn-default" id="playBtn" onclick="replayAudio()" disabled>Play Again</button>
+                                    <button class="morse-btn btn-primary" onclick="submitAnswer()">Submit</button>
+                                    <button class="morse-btn btn-warning" onclick="skipItem()">Skip</button>
+                                </div>
+                                <div>
+                                    <input type="text" id="answerInput" placeholder="Type your answer here..." 
+                                           onkeypress="if(event.key==='Enter') submitAnswer()">
+                                </div>
+
+                                <!-- Utilities -->
+                                <div class="section-title" style="margin-top: 2rem;">Utilities</div>
+                                <div class="buttons">
+                                    <button class="morse-btn btn-default" onclick="showReference()">Reference</button>
+                                    <button class="morse-btn btn-default" onclick="showAnalytics()">Analytics</button>
+                                    <button class="morse-btn btn-info" onclick="saveProgress()">Save</button>
+                                    <button class="morse-btn btn-danger" onclick="resetProgress()">Reset</button>
+                                </div>
+
+                                <!-- Status Area -->
+                                <div class="section-title" style="margin-top: 2rem;">Status</div>
+                                <div id="statusArea" class="status-area"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="ftco-footer ftco-bg-dark ftco-section">
+                <div class="container">
+                    <div class="row mb-5 justify-content-center">
+                        <div class="col-md-5 text-center">
+                            <div class="ftco-footer-widget mb-5">
+                                <ul class="ftco-footer-social list-unstyled">
+                                    <li class="ftco-animate"><a href="https://www.linkedin.com/in/meet--vyas/" style="color: #ffd700" target="_self"><span class="fa-brands fa-linkedin"></span></a></li>
+                                    <li class="ftco-animate"><a href="https://www.instagram.com/the_souled_guitarist/" style="color: #ffd700" target="_self"><span class="fa-brands fa-instagram"></span></a></li>
+                                    <li class="ftco-animate"><a href="https://twitter.com/meet_cosmo" style="color: #ffd700" target="_self"><span class="fa-brands fa-twitter"></span></a></li>
+                                    <li class="ftco-animate"><a href="https://github.com/Meet-Vyas-Dev" style="color: #ffd700" target="_self"><span class="fa-brands fa-github"></span></a></li>
+                                </ul>     
+                            </div>
+                            <div class="ftco-footer-widget">
+                                <h2 class="mb-3">Contact Me</h2>
+                                <p class="h3 email"><a href="mailto:meet.v2@ahduni.edu.in">meet.v2 [at] ahduni.edu.in</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- loader -->
+            <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Morse code mapping
+        const MORSE = {
+            "A": ".-", "B": "-...", "C": "-.-.", "D": "-..",
+            "E": ".", "F": "..-.", "G": "--.", "H": "....",
+            "I": "..", "J": ".---", "K": "-.-", "L": ".-..",
+            "M": "--", "N": "-.", "O": "---", "P": ".--.",
+            "Q": "--.-", "R": ".-.", "S": "...", "T": "-",
+            "U": "..-", "V": "...-", "W": ".--", "X": "-..-",
+            "Y": "-.--", "Z": "--..",
+            "1": ".----", "2": "..---", "3": "...--", "4": "....-", "5": ".....",
+            "6": "-....", "7": "--...", "8": "---..", "9": "----.", "0": "-----"
+        };
+
+        const KOCH_ORDER = [
+            "K","M","R","S","U","A","P","T","L","O","W","I",".","N","J","E","F","0",
+            "Y","V","G","5","/","Q","9","Z","H","3","8","B","?","4","2","7","C","1","D","6","X"
+        ];
+
+        // Audio context
+        let audioContext;
+        let currentAudio = null;
+
+        // Session state
+        let session = {
+            mode: 'letter',
+            items: 8,
+            speed: 0.09,
+            freq: 700,
+            spacing: 1.0,
+            queue: [],
+            index: 0,
+            currentTarget: null,
+            level: 2
+        };
+
+        // Progress tracking
+        let progress = {
+            level: 2,
+            attempts: 0,
+            correct: 0,
+            perLetter: {}
+        };
+
+        // Initialize
+        window.onload = function() {
+            loadProgress();
+            showWelcome();
+            // Initialize audio context on first user interaction
+            document.addEventListener('click', function initAudio() {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    // Resume immediately to prevent suspended state
+                    audioContext.resume();
+                }
+                document.removeEventListener('click', initAudio);
+            }, { once: true });
+        };
+
+        function setMode(mode) {
+            session.mode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function updateValue(type) {
+            switch(type) {
+                case 'items':
+                    session.items = parseInt(document.getElementById('itemsSlider').value);
+                    document.getElementById('itemsValue').textContent = session.items;
+                    break;
+                case 'speed':
+                    session.speed = parseFloat(document.getElementById('speedSlider').value);
+                    document.getElementById('speedValue').textContent = session.speed.toFixed(2) + 's';
+                    break;
+                case 'freq':
+                    session.freq = parseInt(document.getElementById('freqSlider').value);
+                    document.getElementById('freqValue').textContent = session.freq + ' Hz';
+                    break;
+                case 'spacing':
+                    session.spacing = parseFloat(document.getElementById('spacingSlider').value);
+                    document.getElementById('spacingValue').textContent = session.spacing.toFixed(1) + 'x';
+                    break;
+            }
+        }
+
+        function generateMorseAudio(text) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const sampleRate = audioContext.sampleRate;
+            const dotDuration = session.speed;
+            const frequency = session.freq;
+            const farnsworth = session.spacing;
+
+            const unit = dotDuration;
+            const intraGap = Math.floor(sampleRate * unit * 1 * farnsworth);
+            const letterGap = Math.floor(sampleRate * unit * 3 * farnsworth);
+            const wordGap = Math.floor(sampleRate * unit * 7 * farnsworth);
+
+            let audioData = [];
+
+            function generateTone(units) {
+                const n = Math.floor(sampleRate * unit * units);
+                const tone = [];
+                const rampSamples = Math.min(20, Math.max(1, Math.floor(n / 10)));
+                
+                for (let i = 0; i < n; i++) {
+                    let sample = Math.sin(2 * Math.PI * frequency * i / sampleRate);
+                    // Apply envelope to prevent clicking
+                    if (i < rampSamples) {
+                        sample *= i / rampSamples;
+                    } else if (i > n - rampSamples) {
+                        sample *= (n - i) / rampSamples;
+                    }
+                    tone.push(sample * 0.9);
+                }
+                return tone;
+            }
+
+            function addSilence(samples) {
+                for (let i = 0; i < samples; i++) {
+                    audioData.push(0);
+                }
+            }
+
+            // Generate audio for each character
+            const chars = text.toUpperCase().split('');
+            for (let charIndex = 0; charIndex < chars.length; charIndex++) {
+                const char = chars[charIndex];
+                
+                if (char === ' ') {
+                    addSilence(wordGap);
+                    continue;
+                }
+
+                const code = MORSE[char];
+                if (!code) continue;
+
+                // Generate each dot/dash in the morse code
+                const symbols = code.split('');
+                for (let symIndex = 0; symIndex < symbols.length; symIndex++) {
+                    const symbol = symbols[symIndex];
+                    
+                    if (symbol === '.') {
+                        audioData.push(...generateTone(1));
+                    } else if (symbol === '-') {
+                        audioData.push(...generateTone(3));
+                    }
+                    
+                    // Add gap between symbols WITHIN a letter
+                    if (symIndex < symbols.length - 1) {
+                        addSilence(intraGap);
+                    }
+                }
+                
+                // Add gap between letters (but not after the last letter)
+                if (charIndex < chars.length - 1) {
+                    addSilence(letterGap);
+                }
+            }
+
+            // Add a small silence at the end
+            addSilence(Math.floor(sampleRate * 0.2));
+
+            console.log(`Generated ${audioData.length} samples for "${text}" (${(audioData.length/sampleRate).toFixed(2)}s)`);
+            return audioData;
+        }
+
+        function playMorseAudio(text) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            // Resume audio context if suspended (fixes first-play issue)
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            // Stop any currently playing audio
+            if (currentAudio) {
+                try {
+                    currentAudio.stop();
+                } catch(e) {
+                    // Audio already stopped
+                }
+            }
+
+            const audioData = generateMorseAudio(text);
+            
+            if (audioData.length === 0) {
+                console.error('No audio data generated!');
+                return 0;
+            }
+
+            const audioBuffer = audioContext.createBuffer(1, audioData.length, audioContext.sampleRate);
+            const channelData = audioBuffer.getChannelData(0);
+            
+            for (let i = 0; i < audioData.length; i++) {
+                channelData[i] = audioData[i];
+            }
+
+            const source = audioContext.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(audioContext.destination);
+            
+            // Use a small delay to ensure the buffer is ready
+            const startTime = audioContext.currentTime + 0.01;
+            source.start(startTime);
+            currentAudio = source;
+
+            console.log(`Playing audio: ${audioBuffer.duration.toFixed(2)}s`);
+            return audioBuffer.duration;
+        }
+
+        function replayAudio() {
+            if (session.currentTarget) {
+                const status = document.getElementById('statusArea');
+                status.innerHTML += `[REPLAY] Playing audio again...\n`;
+                playMorseAudio(session.currentTarget);
+                status.scrollTop = status.scrollHeight;
+            }
+        }
+
+        function prepareQueue() {
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            const queue = [];
+
+            for (let i = 0; i < session.items; i++) {
+                if (session.mode === 'word' && unlocked.filter(c => /[A-Z0-9]/.test(c)).length >= 10) {
+                    const length = Math.random() < 0.66 ? 3 : 4;
+                    const alphanumeric = unlocked.filter(c => /[A-Z0-9]/.test(c));
+                    let word = '';
+                    for (let j = 0; j < length; j++) {
+                        word += alphanumeric[Math.floor(Math.random() * alphanumeric.length)];
+                    }
+                    queue.push(word);
+                } else {
+                    queue.push(unlocked[Math.floor(Math.random() * unlocked.length)]);
+                }
+            }
+            return queue;
+        }
+
+        function startSession() {
+            session.queue = prepareQueue();
+            session.index = 0;
+            session.currentTarget = session.queue[0];
+            document.getElementById('answerInput').value = '';
+            document.getElementById('playBtn').disabled = false;
+
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            const status = document.getElementById('statusArea');
+            status.innerHTML = `
+${'='.repeat(60)}
+ SESSION STARTED - ${session.mode.toUpperCase()} MODE
+${'='.repeat(60)}
+
+Unlocked Letters (${unlocked.length}): ${unlocked.join(', ')}
+Items in session: ${session.items}
+Speed: ${session.speed}s | Tone: ${session.freq}Hz | Spacing: ${session.spacing}x
+
+Quick Reference:
+${unlocked.map(l => `  ${l}: ${MORSE[l] || 'N/A'}`).join('  ')}
+
+${'─'.repeat(60)}
+Item 1/${session.items} - Listen and type your answer below
+${'='.repeat(60)}
+
+`;
+
+            playCurrentItem();
+        }
+
+        function playCurrentItem() {
+            const target = session.currentTarget;
+            if (!target) return;
+
+            const status = document.getElementById('statusArea');
+            
+            status.innerHTML += `[AUDIO] Playing morse code...\n`;
+            status.innerHTML += `   Listen carefully and type your answer above.\n`;
+            status.innerHTML += `   (Click "Play Again" to replay)\n\n`;
+
+            const duration = playMorseAudio(target);
+            
+            // Scroll to bottom
+            status.scrollTop = status.scrollHeight;
+        }
+
+        function submitAnswer() {
+            const target = session.currentTarget;
+            if (!target) {
+                alert('Start a session first!');
+                return;
+            }
+
+            const guess = document.getElementById('answerInput').value.trim().toUpperCase();
+            const correct = guess === target.toUpperCase();
+
+            // Record progress
+            progress.attempts++;
+            if (correct) progress.correct++;
+            
+            if (!progress.perLetter[target]) {
+                progress.perLetter[target] = { attempts: 0, correct: 0 };
+            }
+            progress.perLetter[target].attempts++;
+            if (correct) progress.perLetter[target].correct++;
+
+            saveProgress();
+
+            const status = document.getElementById('statusArea');
+            if (correct) {
+                status.innerHTML += `<span class="correct">[CORRECT] Target: ${target} | Your answer: ${guess}</span>\n`;
+            } else {
+                status.innerHTML += `<span class="wrong">[WRONG] Target: ${target} | Your answer: ${guess}</span>\n`;
+            }
+
+            session.index++;
+            if (session.index < session.queue.length) {
+                session.currentTarget = session.queue[session.index];
+                document.getElementById('answerInput').value = '';
+                status.innerHTML += `\nItem ${session.index + 1}/${session.items}\n\n`;
+                
+                setTimeout(() => playCurrentItem(), 500);
+            } else {
+                finishSession();
+            }
+
+            status.scrollTop = status.scrollHeight;
+        }
+
+        function skipItem() {
+            const target = session.currentTarget;
+            if (!target) return;
+
+            progress.attempts++;
+            if (!progress.perLetter[target]) {
+                progress.perLetter[target] = { attempts: 0, correct: 0 };
+            }
+            progress.perLetter[target].attempts++;
+            saveProgress();
+
+            const status = document.getElementById('statusArea');
+            status.innerHTML += `[SKIPPED] ${target} (recorded as incorrect)\n`;
+
+            session.index++;
+            if (session.index < session.queue.length) {
+                session.currentTarget = session.queue[session.index];
+                document.getElementById('answerInput').value = '';
+                status.innerHTML += `\nItem ${session.index + 1}/${session.items}\n\n`;
+                setTimeout(() => playCurrentItem(), 500);
+            } else {
+                finishSession();
+            }
+
+            status.scrollTop = status.scrollHeight;
+        }
+
+        function finishSession() {
+            session.currentTarget = null;
+            document.getElementById('playBtn').disabled = true;
+            const accuracy = progress.attempts > 0 ? (progress.correct / progress.attempts * 100).toFixed(1) : 0;
+
+            const status = document.getElementById('statusArea');
+            status.innerHTML += `
+${'='.repeat(60)}
+ SESSION COMPLETE!
+${'='.repeat(60)}
+
+Session Accuracy: ${accuracy}%
+Total Attempts: ${progress.attempts} | Correct: ${progress.correct}
+
+`;
+
+            // Check for level up
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            let totalAcc = 0;
+            let count = 0;
+            for (let letter of unlocked) {
+                if (progress.perLetter[letter] && progress.perLetter[letter].attempts > 0) {
+                    totalAcc += progress.perLetter[letter].correct / progress.perLetter[letter].attempts;
+                    count++;
+                }
+            }
+            const avgAcc = count > 0 ? totalAcc / count : 0;
+
+            if (avgAcc >= 0.90 && progress.level < KOCH_ORDER.length) {
+                progress.level++;
+                saveProgress();
+                const newLetter = KOCH_ORDER[progress.level - 1];
+                status.innerHTML += `
+${'='.repeat(60)}
+ CONGRATULATIONS!
+${'='.repeat(60)}
+New letter unlocked: ${newLetter} (${MORSE[newLetter]})
+
+Tip: Start a new session to practice with your new letter!
+
+`;
+            }
+
+            status.scrollTop = status.scrollHeight;
+        }
+
+        function showReference() {
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            const status = document.getElementById('statusArea');
+            
+            let html = `
+${'='.repeat(60)}
+ MORSE CODE REFERENCE
+${'='.repeat(60)}
+
+<table class="reference-table">
+    <tr>
+        <th>Letter</th>
+        <th>Morse Code</th>
+        <th>Pattern</th>
+    </tr>
+`;
+
+            for (let letter of unlocked) {
+                const code = MORSE[letter] || 'N/A';
+                const pattern = code.replace(/\./g, '●').replace(/-/g, '▬');
+                html += `
+    <tr>
+        <td><strong>${letter}</strong></td>
+        <td>${code}</td>
+        <td>${pattern}</td>
+    </tr>
+`;
+            }
+
+            html += `
+</table>
+
+Tip: Press 'Start Session' when ready to practice!
+`;
+
+            status.innerHTML = html;
+        }
+
+        function showAnalytics() {
+            const accuracy = progress.attempts > 0 ? (progress.correct / progress.attempts * 100).toFixed(1) : 0;
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            
+            let html = `
+${'='.repeat(60)}
+ PERFORMANCE ANALYTICS
+${'='.repeat(60)}
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-label">Overall Accuracy</div>
+        <div class="stat-value">${accuracy}%</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Total Attempts</div>
+        <div class="stat-value">${progress.attempts}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Correct Answers</div>
+        <div class="stat-value">${progress.correct}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Current Level</div>
+        <div class="stat-value">${progress.level}</div>
+    </div>
+</div>
+
+<table class="reference-table">
+    <tr>
+        <th>Letter</th>
+        <th>Attempts</th>
+        <th>Correct</th>
+        <th>Accuracy</th>
+    </tr>
+`;
+
+            for (let letter of unlocked) {
+                const data = progress.perLetter[letter] || { attempts: 0, correct: 0 };
+                const acc = data.attempts > 0 ? (data.correct / data.attempts * 100).toFixed(0) + '%' : 'N/A';
+                html += `
+    <tr>
+        <td><strong>${letter}</strong></td>
+        <td>${data.attempts}</td>
+        <td>${data.correct}</td>
+        <td>${acc}</td>
+    </tr>
+`;
+            }
+
+            html += '</table>';
+            document.getElementById('statusArea').innerHTML = html;
+        }
+
+        function saveProgress() {
+            localStorage.setItem('morseProgress', JSON.stringify(progress));
+            console.log('Progress saved!');
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('morseProgress');
+            if (saved) {
+                progress = JSON.parse(saved);
+            }
+        }
+
+        function resetProgress() {
+            if (confirm('WARNING: This will delete ALL your progress!\n\nAre you sure you want to reset?')) {
+                progress = {
+                    level: 2,
+                    attempts: 0,
+                    correct: 0,
+                    perLetter: {}
+                };
+                saveProgress();
+                showWelcome();
+            }
+        }
+
+        function showWelcome() {
+            const unlocked = KOCH_ORDER.slice(0, progress.level);
+            const accuracy = progress.attempts > 0 ? (progress.correct / progress.attempts * 100).toFixed(1) : 0;
+            
+            document.getElementById('statusArea').innerHTML = `
+${'='.repeat(60)}
+ MORSECRAFT TRAINER - WELCOME!
+${'='.repeat(60)}
+
+Unlocked Letters: ${progress.level} → ${unlocked.join(', ')}
+Overall Accuracy: ${accuracy}%
+Total Attempts: ${progress.attempts} | Correct: ${progress.correct}
+
+${'─'.repeat(60)}
+QUICK START GUIDE:
+  1. Adjust settings (mode, speed, tone) if desired
+  2. Press 'Start Session' to begin
+  3. Audio will play automatically for each item
+  4. Type your answer and press 'Submit' (or Enter)
+  5. Achieve 90% accuracy to unlock new letters!
+
+Tips:
+  • Click 'Analytics' to view your performance stats
+  • Progress auto-saves after each answer!
+  • Click 'Reference' to see morse code patterns
+  • Start with slower speeds and increase as you improve!
+${'─'.repeat(60)}
+`;
+        }
+    </script>
+
+    <!-- Standard Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/a95309870d.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
