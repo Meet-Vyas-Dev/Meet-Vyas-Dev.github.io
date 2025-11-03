@@ -37,6 +37,15 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+    /* Prevent horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        overflow-x: hidden;
+    }
+
     .scroll-wrapper {
         max-height: 70vh;
         overflow-y: auto;
@@ -318,11 +327,31 @@
         margin: 1.5rem 0;
     }
 
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .table-wrapper::-webkit-scrollbar-track {
+        background: #222;
+    }
+
+    .table-wrapper::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 3px;
+    }
+
     .reference-table th,
     .reference-table td {
         padding: 12px;
         border: 1px solid #333;
         text-align: center;
+        min-width: 60px;
+        white-space: nowrap;
     }
 
     .reference-table th {
@@ -353,29 +382,220 @@
     }
 
     @media (max-width: 768px) {
+        .morse-section {
+            padding-top: 1rem;
+            min-height: auto;
+        }
+
         .morse-wrapper {
             padding: 1.5rem 1rem;
+            margin: 0 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            gap: 1rem;
         }
 
         .control-group {
             flex-direction: column;
             align-items: flex-start;
+            gap: 0.5rem;
         }
 
         .control-group label {
             min-width: auto;
+            width: 100%;
+            font-size: 0.9rem;
         }
 
         input[type="range"] {
             width: 100%;
+            min-width: auto;
+            height: 35px; /* Larger touch target */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 16px; /* Prevent zoom on iOS */
+            padding: 14px;
+        }
+
+        .value-display {
+            min-width: auto;
+            text-align: left;
+        }
+
+        .mode-toggle {
+            width: 100%;
+            gap: 8px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            min-height: 44px; /* Touch-friendly size */
         }
 
         .buttons {
             flex-direction: column;
+            gap: 10px;
         }
 
         .morse-btn {
             width: 100%;
+            min-height: 44px; /* Touch-friendly size */
+            font-size: 14px;
+        }
+
+        .status-area {
+            padding: 1rem;
+            min-height: 300px;
+            max-height: 400px;
+            font-size: 0.85rem;
+        }
+
+        .stats {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .stat-card {
+            padding: 1rem 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            margin: 0.25rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+        }
+
+        .reference-table {
+            font-size: 0.85rem;
+        }
+
+        .reference-table th,
+        .reference-table td {
+            padding: 8px 4px;
+        }
+
+        /* Heading adjustments */
+        .heading-section h2 {
+            font-size: 2em !important;
+        }
+
+        .heading-section p {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .morse-wrapper {
+            padding: 1rem 0.75rem;
+            margin: 0 0.25rem;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .control-group label {
+            font-size: 0.85rem;
+        }
+
+        .value-display {
+            font-size: 0.85rem;
+        }
+
+        .morse-btn {
+            padding: 10px 18px;
+            font-size: 13px;
+            min-height: 42px;
+        }
+
+        .mode-btn {
+            padding: 10px 12px;
+            font-size: 0.85rem;
+        }
+
+        .status-area {
+            font-size: 0.8rem;
+            min-height: 250px;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            margin: 0.25rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+        }
+
+        .stats {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .stat-card {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .heading-section h2 {
+            font-size: 1.5em !important;
+        }
+
+        .heading-section p {
+            font-size: 0.85rem;
+        }
+
+        .reference-table {
+            font-size: 0.75rem;
+        }
+
+        .reference-table th,
+        .reference-table td {
+            padding: 8px 4px;
+            min-width: 50px;
+        }
+    }
+
+    /* Landscape mode on small devices */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .morse-section {
+            padding-top: 0.5rem;
+        }
+
+        .status-area {
+            max-height: 250px;
+        }
+    }
+
+    /* Improve touch interactions */
+    @media (hover: none) and (pointer: coarse) {
+        /* Touch devices */
+        .morse-btn:active {
+            transform: scale(0.98);
+        }
+
+        .mode-btn:active {
+            transform: scale(0.98);
+        }
+
+        input[type="range"] {
+            height: 40px;
         }
     }
     </style>
@@ -431,13 +651,13 @@
             <section class="ftco-section morse-section">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8 text-center heading-section ftco-animate">
+                        <div class="col-12 col-md-10 col-lg-8 text-center heading-section ftco-animate">
                             <h2 style="font-size: 3em; color: #fff;">MorseCraft Trainer</h2>
                             <p style="color: #ccc;">Interactive Morse Code Learning System - Koch Method</p>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-4">
-                        <div class="col-md-12 ftco-animate">
+                        <div class="col-12 ftco-animate">
                             <div class="morse-wrapper">
                                 <!-- Training Settings -->
                                 <div class="section-title">Training Settings</div>
@@ -954,6 +1174,7 @@ ${'='.repeat(60)}
  MORSE CODE REFERENCE
 ${'='.repeat(60)}
 
+<div class="table-wrapper">
 <table class="reference-table">
     <tr>
         <th>Letter</th>
@@ -976,6 +1197,7 @@ ${'='.repeat(60)}
 
             html += `
 </table>
+</div>
 
 Tip: Press 'Start Session' when ready to practice!
 `;
@@ -1011,6 +1233,7 @@ ${'='.repeat(60)}
     </div>
 </div>
 
+<div class="table-wrapper">
 <table class="reference-table">
     <tr>
         <th>Letter</th>
@@ -1033,7 +1256,7 @@ ${'='.repeat(60)}
 `;
             }
 
-            html += '</table>';
+            html += '</table></div>';
             document.getElementById('statusArea').innerHTML = html;
         }
 
